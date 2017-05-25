@@ -20,14 +20,15 @@ public class ScheduledNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, i, PendingIntent.FLAG_CANCEL_CURRENT);
+       PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, i, PendingIntent.FLAG_CANCEL_CURRENT);
 
         Notification.Builder builder = new Notification.Builder(context);
-        builder.setContentTitle(i.getStringExtra("name"));
-        builder.setContentText(i.getStringExtra("desc"));
+        builder.setContentTitle(intent.getStringExtra("name"));
+        builder.setContentText(intent.getStringExtra("desc"));
         builder.setSmallIcon(android.R.drawable.ic_dialog_info);
         builder.setContentIntent(pendingIntent);
         builder.setAutoCancel(true);
+        builder.setPriority(Notification.PRIORITY_HIGH);
         Uri uri= RingtoneManager.getDefaultUri
                 (RingtoneManager.TYPE_NOTIFICATION);
         builder.setSound(uri);

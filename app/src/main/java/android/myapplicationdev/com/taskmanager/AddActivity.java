@@ -17,7 +17,7 @@ import java.util.Calendar;
 
 public class AddActivity extends AppCompatActivity {
 
-    EditText etName, etDesc;
+    EditText etName, etDesc, etTiming;
     Button btnAdd, btnCancel;
     int reqCode = 123;
     Task content;
@@ -29,6 +29,7 @@ public class AddActivity extends AppCompatActivity {
 
         etName = (EditText) findViewById(R.id.etName);
         etDesc = (EditText) findViewById(R.id.etDesc);
+        etTiming = (EditText) findViewById(R.id.etTime);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);
         btnCancel = (Button) findViewById(R.id.btnCancel);
@@ -43,7 +44,7 @@ public class AddActivity extends AppCompatActivity {
                 dbh.insertTask(content);
 
                 Calendar cal = Calendar.getInstance();
-                cal.add(Calendar.SECOND, 5);
+                cal.add(Calendar.SECOND, Integer.parseInt(etTiming.getText().toString()));
 
                 Intent intent = new Intent(AddActivity.this, ScheduledNotificationReceiver.class);
                 intent.putExtra("name", name);

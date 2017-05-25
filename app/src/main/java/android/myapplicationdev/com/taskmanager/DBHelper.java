@@ -35,11 +35,6 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(createNoteTableSql);
         Log.i("info", "created tables");
 
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_TASK_NAME, "Buy milk");
-        values.put(COLUMN_DESC, "Low fat");
-        db.insert(TABLE_TASK, null, values);
-        Log.i("info", "dummy records inserted");
 
     }
 
@@ -79,11 +74,17 @@ public class DBHelper extends SQLiteOpenHelper {
         if (result != 1){
             Log.d("DBHelper", "Insert failed");
         } else {
-            Log.d("SQL Insert",""+ result); //id returned, shouldn’t be -1
+            Log.d("SQL Insert",""+ result);
         }
 
         db.close();
         return result;
+    }
+    public Integer deleteTask(Integer id){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete("task","id = ?",new String[]{
+                Integer.toString(id)
+        });
     }
 
 }

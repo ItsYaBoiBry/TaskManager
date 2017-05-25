@@ -25,6 +25,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/etDesc" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remind in seconds"
+        android:id="@+id/textView3" />
 
     <EditText
         android:layout_width="match_parent"
